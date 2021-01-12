@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib import admin
 import uuid
 
 class MyModelName(models.Model):
@@ -66,8 +67,23 @@ class Book(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('book-detail', args=[str(self.id)])
 
+class Author2(models.Model):
+    """Model representing an author."""
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    #date_of_death = models.DateField('Died', null=True, blank=True)
 
-import uuid # Required for unique book instances
+    class Meta:
+        ordering = ['last_name', 'first_name']
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular author instance."""
+        return reverse('author-detail', args=[str(self.id)])
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.last_name}, {self.first_name}'
 
 class BookInstance(models.Model):
     """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
@@ -98,13 +114,20 @@ class BookInstance(models.Model):
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
 
+
 class Author(models.Model):
     """Model representing an author."""
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    first_name    = models.CharField(max_length=100)
+    last_name     = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
-    date_of_death = models.DateField('Died', null=True, blank=True)
+    favoriteeeee  = models.CharField(max_length=100, default='you need to type something')
+    intrest       = models.CharField(max_length=100, default='you need to type something')
+    Education     = models.CharField(max_length=100, default='you need to type something')
+    #date_of_death = models.DateField('Died', null=True, blank=True)
 
+    #list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
+    list_display = ('last_name', 'first_name', 'favoriteeeee' ,'date_of_birth','intrest','Education')
+ #   inline = [AuthorInline]
     class Meta:
         ordering = ['last_name', 'first_name']
 
@@ -115,7 +138,44 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
+#模型管理(ModelAdmin)類別 (他是用來描述排版的)
 
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name', 'date_of_birth','favoriteeeee','intrest','Education')
+    #fields = ['first_name', 'last_name',('favoriteeeee','date_of_birth')]
+    list_filter = ('last_name', 'first_name')
+    fieldsets = (
+        (None, {
+            'fields': ('last_name','first_name')
+        }),
+        ('Availability', {
+            'fields': ('date_of_birth', 'favoriteeeee')
+        }),
+        ('Unavailability', {
+            'fields': ('intrest','Education')
+        }),
+    )
+
+class AuthorAdminInline(admin.TabularInline):
+    model = Author
+class BooksInstanceInline(admin.TabularInline):
+    model = BookInstance
+
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'isbn')
+    fields = ['author', 'genre','isbn','summary' ,'title']
+    list_filter = ('title', 'author')
+    inlines = [BooksInstanceInline]
+
+class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ('id','book','imprint','due_back','status')
+    list_filter = ('status', 'due_back')
+
+def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+display_genre.short_description = 'Genre'
 #執行
 #python3 manage.py makemigrations
-#python3 manage.py migrate
+#python5 manage.py migrate
