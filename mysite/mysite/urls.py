@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('home.urls')),
     path('', RedirectView.as_view(url='/home/')), #直接跳轉至/home
+#    path('', views.index, name='index')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #靜態頁面需要的

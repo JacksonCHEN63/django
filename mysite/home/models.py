@@ -67,7 +67,7 @@ class Book(models.Model):
         """Returns the url to access a detail record for this book."""
         return reverse('book-detail', args=[str(self.id)])
 
-class Author2(models.Model):
+class Jackson(models.Model):
     """Model representing an author."""
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
