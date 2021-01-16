@@ -18,8 +18,8 @@ class MyModelName(models.Model):
     # Methods
     # 個人理解就是他這邊算是一個寫變數的地方，也許html來抓這邊的變數，
     def get_absolute_url(self):
-         """Returns the url to access a particular instance of MyModelName."""
-         return reverse('model-detail-view', args=[str(self.id)])
+        from django.urls import reverse
+        return reverse('model-detail-view', args=[str(self.id)])
     
     #定義標準python的類方法__str__，為每個物件返回一個人類可讀的字符串
     def __str__(self):
@@ -50,7 +50,6 @@ class Book(models.Model):
     """Model representing a book (but not a specific copy of a book)."""
     title = models.CharField(max_length=200)
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
-
     # Foreign Key used because book can only have one author, but authors can have multiple books
     # Author as a string rather than object because it hasn't been declared yet in the file.
     summary = models.TextField(max_length=1000, help_text='Enter a brief description of the book')
@@ -65,7 +64,7 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('book_detail', args=[str(self.id)])
 
 class Jackson(models.Model):
     """Model representing an author."""

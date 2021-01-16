@@ -1,23 +1,10 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre, Jackson
-from django.views import generic
+from django.views import generic #generic->通用，他可以去調用model的class在database中的資料
+from django.shortcuts import get_object_or_404 #函數作為引發Http404異常的快捷方式
 
-class BookListView(generic.ListView):
-    model = Book
-    context_object_name = 'my_book_list'   # your own name for the list as a template variable
-    queryset = Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
-    template_name = 'books/my_arbitrary_template_name_list.html'  # Specify your own template name/location
-    def get_queryset(self):
-        return Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get the context
-        context = super(BookListView, self).get_context_data(**kwargs)
-        # Create any data and add it to the context
-        context['some_data'] = 'This is just some data'
-        return context
-
-def home(request):
-    return render(request, 'home/index.html')
+#def home(request):
+#    return render(request, 'home/index.html')
 # Create your views here.
 
 def index(request):
@@ -44,3 +31,24 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context) 
 
+class BookListView(generic.ListView):
+    model = Book
+    template_name = 'books/book_list.html'  # Specify your own template name/location
+    def get_context_data(self, **kwargs):
+       # Call the base implementation first to get the context
+        context = super(BookListView, self).get_context_data(**kwargs)
+       # Create any data and add it to the context
+        context['some_data'] = 'This is just some data'
+        return context
+
+class BookDetailView(generic.DetailView):
+    model = Book
+    template_name = 'books/book_detail.html' #這行是指定特定的路徑，沒有這一行的話他預設位置會跟create app的名稱相同，＃/home/ubuntu/Django/mysite/templates/home/book_detail.html
+    #有指定的話就是/home/ubuntu/Django/mysite/templates/books/book_detail.html
+    def book_detail_view(request, primary_key):
+        book = Book.objects.get(pk=primary_key)
+        #try:
+        #    book = Book.objects.get(pk=primary_key)
+        #except Book.DoesNotExist:
+        #    raise Http404('Book does not exist')
+        return render(request, 'books/book_detail.html', context={'book': book})
