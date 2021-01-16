@@ -34,6 +34,7 @@ def index(request):
 class BookListView(generic.ListView):
     model = Book
     template_name = 'books/book_list.html'  # Specify your own template name/location
+    paginate_by = 10
     def get_context_data(self, **kwargs):
        # Call the base implementation first to get the context
         context = super(BookListView, self).get_context_data(**kwargs)
@@ -46,9 +47,29 @@ class BookDetailView(generic.DetailView):
     template_name = 'books/book_detail.html' #這行是指定特定的路徑，沒有這一行的話他預設位置會跟create app的名稱相同，＃/home/ubuntu/Django/mysite/templates/home/book_detail.html
     #有指定的話就是/home/ubuntu/Django/mysite/templates/books/book_detail.html
     def book_detail_view(request, primary_key):
-        book = Book.objects.get(pk=primary_key)
-        #try:
-        #    book = Book.objects.get(pk=primary_key)
-        #except Book.DoesNotExist:
-        #    raise Http404('Book does not exist')
+        try:
+            book = Book.objects.get(pk=primary_key)
+        except Book.DoesNotExist:
+            raise Http404('Book does not exist')
         return render(request, 'books/book_detail.html', context={'book': book})
+
+class AuthorListView(generic.ListView):
+    model = Author
+    template_name = 'authors/author_list.html'
+    def get_context_data(self, **kwargs):
+       # Call the base implementation first to get the context
+        context = super(AuthorListView, self).get_context_data(**kwargs)
+       # Create any data and add it to the context
+        context['some_data'] = 'This is just some data'
+        return context
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    template_name = 'authors/author_detail.html' #這行是指定特定的路徑，沒有這一行的話他預設位置會跟create app的名稱相同，＃/home/ubuntu/Django/mysite/templates/home/book_detail.html
+    #有指定的話就是/home/ubuntu/Django/mysite/templates/books/book_detail.html
+    def author_detail_view(request, primary_key):
+        try:
+            author = Author.objects.get(pk=primary_key)
+        except Author.DoesNotExist:
+            raise Http404('Author does not exist')
+        return render(request, 'authors/author_detail.html', context={'author': author})

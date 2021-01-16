@@ -10,4 +10,6 @@ urlpatterns = [
     #name=book 是去拿templates base_generic.html的東西
     path('books/<int:pk>', views.BookDetailView.as_view(), name='book_detail'),
 #    re_path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
+    path('authors/', views.AuthorListView.as_view(), name='author'), #views.BookListView.as_view()去調用views.py的BookListView class
+    path('authors/<int:pk>', views.AuthorDetailView.as_view(), name='author_detail'),
 ]

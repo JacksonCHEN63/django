@@ -56,6 +56,7 @@ class Book(models.Model):
     isbn = models.CharField('ISBN', max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
 
     #書籍類別」(genre)是一個 ManyToManyField ，因此一本書可以有很多書籍類別，而一個書結類別也能夠對應到很多本書
+    #ManyToManyField這個就是讓多個class使用
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
 
     def __str__(self):
@@ -132,7 +133,7 @@ class Author(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular author instance."""
-        return reverse('author-detail', args=[str(self.id)])
+        return reverse('author_detail', args=[str(self.id)])
 
     def __str__(self):
         """String for representing the Model object."""
