@@ -13,11 +13,11 @@ pipeline {
             }
         }
         
-	stage('Stage 3') {
-            steps {
-                sh './../kson_Multibranch_Pipeline_master/jenkins/test.sh'
-            }
-        }
+//	stage('Stage 3') {
+//            steps {
+//                sh './../kson_Multibranch_Pipeline_master/jenkins/test.sh'
+//            }
+//        }
 
     }
 }
