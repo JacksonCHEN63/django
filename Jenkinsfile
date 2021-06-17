@@ -18,7 +18,7 @@ pipeline {
 //                sh './../kson_Multibranch_Pipeline_master/jenkins/test.sh'
 //            }
 //        }
-        stage('Stage 1') {
+        stage('Stage 4') {
             steps {
                 sh 'git clone https://github.com/JacksonCHEN63/Django.git'
             }
