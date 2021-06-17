@@ -15,7 +15,7 @@ pipeline {
         
 	stage('Stage 3') {
             steps {
-                sh './jenkins/test.sh'
+                sh './../kson_Multibranch_Pipeline_master/jenkins/test.sh'
             }
         }
 
