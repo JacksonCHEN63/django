@@ -6,10 +6,18 @@ pipeline {
                 sh 'df -h'
             }
         }
+
         stage('Stage 2') {
             steps {
                 echo 'heeee'
             }
         }
+        
+	stage('Stage 3') {
+            steps {
+                sh './jenkins/test.sh'
+            }
+        }
+
     }
 }
