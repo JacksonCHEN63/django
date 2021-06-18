@@ -9,7 +9,7 @@ pipeline {
 
         stage('Stage 2') {
             steps {
-                echo 'heeee'
+                echo 'hello'
             }
         }
         
@@ -18,10 +18,10 @@ pipeline {
 //                sh './../kson_Multibranch_Pipeline_master/jenkins/test.sh'
 //            }
 //        }
-        stage('Stage 4') {
-            steps {
-                sh 'git clone https://github.com/JacksonCHEN63/Django.git'
-            }
-        }
+//         stage('Stage 4') {
+//             steps {
+//                 sh 'git clone https://github.com/JacksonCHEN63/Django.git'
+//             }
+//        }
     }
 }
