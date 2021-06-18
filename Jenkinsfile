@@ -12,7 +12,7 @@ pipeline {
             branch "dev"
 	  }
             steps {
-                echo 'hello'
+                echo 'hello world'
             }
         }
     }
