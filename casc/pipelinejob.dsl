@@ -5,12 +5,12 @@ pipelineJob('Configuration as Code Plugin') {
 properties([parameters([booleanParam(defaultValue: false, description: '', name: 'isRelease')])])
 
 agent any {
-
     stage("checkout") {
         echo "hello"
     } 
 }            
             ''')
+            sandbox()
         }
     }
 }
