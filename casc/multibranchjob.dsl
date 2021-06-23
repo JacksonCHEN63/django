@@ -7,4 +7,9 @@ multibranchPipelineJob('example') {
             includes('JENKINS-*')
         }
     }
+    factory {
+      workflowBranchProjectFactory {
+        scriptPath('Jenkinsfile')
+      }
+    }
 }
