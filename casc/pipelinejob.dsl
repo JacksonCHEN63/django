@@ -4,7 +4,7 @@ pipelineJob('Configuration as Code Plugin') {
             script('''
 properties([parameters([booleanParam(defaultValue: false, description: '', name: 'isRelease')])])
 
-node {
+agent any {
 
     stage("checkout") {
         echo "hello"
