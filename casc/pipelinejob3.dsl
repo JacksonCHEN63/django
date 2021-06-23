@@ -1,4 +1,4 @@
-pipelineJob('job-dsl-plugin') {
+pipelineJob('pipelinejob3_jenkinsfile_casc') {
   definition {
     cpsScm {
       scm {

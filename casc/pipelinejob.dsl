@@ -1,4 +1,4 @@
-pipelineJob('Configuration as Code Plugin') {
+pipelineJob('pipelinejob1_casc') {
     definition {
         cps {
             script('''
