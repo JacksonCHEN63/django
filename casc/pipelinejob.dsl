@@ -2,7 +2,7 @@ pipelineJob('Configuration as Code Plugin') {
     definition {
         cps {
             script('''
-agent any {
+node ("jackson") {
     stage("checkout") {
         echo "hello"
     } 
