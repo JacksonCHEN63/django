@@ -4,7 +4,7 @@ pipelineJob('Configuration as Code Plugin') {
             script('''
 properties([parameters([booleanParam(defaultValue: false, description: '', name: 'isRelease')])])
 
-node("dockerhost1") {
+node {
 
     stage("checkout") {
         echo "hello"
