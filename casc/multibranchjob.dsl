@@ -5,9 +5,4 @@ multibranchPipelineJob('Multibranch_casc') {
             repository('Django')
         }
     }
-    factory {
-      workflowBranchProjectFactory {
-        scriptPath('Jenkinsfile')
-      }
-    }
 }
