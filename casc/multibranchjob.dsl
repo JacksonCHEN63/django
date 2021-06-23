@@ -1,6 +1,6 @@
 multibranchPipelineJob('Multibranch_casc') {
     branchSources {
-        github {
+        git {
             remote('https://github.com/JacksonCHEN63/Django.git')
         }
     }
