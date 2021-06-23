@@ -1,12 +1,10 @@
-multibranchPipelineJob('Multibranch_casc') {
+multibranchPipelineJob('example') {
     branchSources {
         git {
-            remote('https://github.com/JacksonCHEN63/Django.git')
+            id('12121212') // IMPORTANT: use a constant and unique identifier
+            remote('https://github.com/jenkinsci/job-dsl-plugin.git')
+            credentialsId('github-ci')
+            includes('JENKINS-*')
         }
-    }
-    factory {
-      workflowBranchProjectFactory {
-        scriptPath('Jenkinsfile')
-      }
     }
 }
