@@ -5,4 +5,7 @@ freeStyleJob('freestyle_casc') {
     steps {
         shell 'echo "hi"'
     }
+    steps {
+        shell 'echo hello'
+    }
 }
