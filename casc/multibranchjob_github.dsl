@@ -5,7 +5,7 @@ multibranchPipelineJob('multibranch_github') {
             scanCredentialsId('github-ci')
             repoOwner('JacksonCHEN63')
             repository('Django.git')
-            credentialsId('github-ci')
+            scanCredentialsId('2c3b6aca-62b2-49e5-946f-1b7fdefcc764')
         }
     }
 }
