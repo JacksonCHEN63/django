@@ -4,6 +4,6 @@ freeStyleJob('freestyle_casc') {
     }
     steps {
         shell 'echo "hi"'
-        shell 'echo hello'
+        shell 'sh jenkins/test.sh'
     }
 }
