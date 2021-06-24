@@ -1,5 +1,5 @@
-freeStyleJob('example') {
+freeStyleJob('FreeStlye') {
     scm {
-        github('jenkinsci/job-dsl-plugin', 'master')
+        github('JacksonCHEN63/Django', 'master')
     }
 }
