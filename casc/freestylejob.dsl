@@ -4,7 +4,7 @@ freeStyleJob('freestyle_casc') {
     }
     steps {
       script {
-        sh "jenkins/test.sh"
+        sh "sh enkins/test.sh"
       }
     }
 }
