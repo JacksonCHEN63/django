@@ -4,7 +4,7 @@ freeStyleJob('freestyle_casc') {
     }
     steps {
       script {
-        sh "sh enkins/test.sh"
+        shell(readFileFromWorkspace('./jenkins/test.sh'))
       }
     }
 }
