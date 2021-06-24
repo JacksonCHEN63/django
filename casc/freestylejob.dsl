@@ -3,8 +3,6 @@ freeStyleJob('freestyle_casc') {
         github('JacksonCHEN63/Django', 'master')
     }
     steps {
-      script {
         shell(readFileFromWorkspace('./jenkins/test.sh'))
-      }
     }
 }
