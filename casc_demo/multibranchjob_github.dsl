@@ -1,4 +1,4 @@
-multibranchPipelineJob('multibranch_github_casc') {
+multibranchPipelineJob('demo/multibranch_github_casc') {
     branchSources {
         github {
             id('23232323') // IMPORTANT: use a constant and unique identifier

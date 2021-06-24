@@ -1,4 +1,4 @@
-pipelineJob('pipelinejob1_casc') {
+pipelineJob('demo/pipelinejob1_casc') {
     definition {
         cps {
             script('''

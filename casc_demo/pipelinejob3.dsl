@@ -1,4 +1,4 @@
-pipelineJob('pipelinejob3_jenkinsfile_casc') {
+pipelineJob('demo/pipelinejob3_jenkinsfile_casc') {
   definition {
     cpsScm {
       scm {
